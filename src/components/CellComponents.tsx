@@ -1,11 +1,17 @@
 import { FC } from 'react'
+import { Cell } from '../logic/Cell';
 //import cn from 'classnames'
 //import styles from './CellComponents.module.css'
 
-const CellComponents: FC = () => {
+interface CellProps {
+  cell: Cell
+}
+
+const CellComponents: FC<CellProps> = ({cell}) => {
 
   return (
-    <div className="cell">
+    <div className={['cell', cell.color].join('  ')}
+    >
       
     </div>
   );

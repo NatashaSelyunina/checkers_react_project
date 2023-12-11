@@ -11,10 +11,11 @@
 }
 
 .board {
-  width: calc(65px * 8);
-  height: calc(65px * 8);
+  width: calc(66.2px * 8);
+  height: calc(66.2px * 8);
   display: flex;
   flex-wrap: wrap;
+  border: 5px solid rgb(100, 10, 10);
 }
 
 .cell {
@@ -25,10 +26,10 @@
   align-items: center;
 }
 
-.darkField {
-  background-color: brown;
+.black {
+  background-color: rgb(100, 10, 10);
 }
 
-.lightField {
-  background-color: bisque;
+.white {
+  background-color: burlywood;
 }
