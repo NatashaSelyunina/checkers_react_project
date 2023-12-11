@@ -1,7 +1,9 @@
+import "./App.css";
+
 const App = () => {
   return (
-    <div>
-     work
+    <div className="app">
+     
     </div>
   );
 };
