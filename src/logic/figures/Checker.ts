@@ -11,4 +11,13 @@ export class Checker extends Figure {
     this.logo = color === Colors.BLACK ? blacklogo : whitelogo;
     this.name = FigureNames.CHECKER;
   }
+
+  canMove(target: Cell): boolean {
+    if(!super.canMove(target))
+      return false;
+    if (this.cell.isEmptyDiagonal(target))
+      return true;
+
+    return false;
+  }
 }
