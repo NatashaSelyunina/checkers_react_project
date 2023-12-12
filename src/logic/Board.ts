@@ -20,6 +20,24 @@ export class Board {
     }
   }
 
+  public getCopyBoard(): Board {
+    const newBoard = new Board();
+    newBoard.cells = this.cells;
+    return newBoard;
+  }
+
+  public strokeIllumination(selectedCell: Cell | null) {
+    for (let i = 0; i < this.cells.length; i++) {
+      const row = this.cells[i];
+      for (let j = 0; j < row.length; j++) {
+        if ((i + j) % 2 !== 0) {
+          const target = row[j];
+          target.free = !!selectedCell?.figure?.canMove(target);
+        } 
+      }
+    }
+  }
+
   public getCell(x: number, y: number) {
     return this.cells[y][x];
   }

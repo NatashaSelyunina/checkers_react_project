@@ -20,4 +20,12 @@ export class Cell {
     this.free = false;
     this.id = Math.random();
   }
+
+  moveFigure(target: Cell) { // target - ячецка, на котору хотим переместить
+    if (this.figure && this.figure?.canMove(target)) {
+      this.figure.moveFigure(target);
+      target.figure = this.figure;
+      this.figure = null;
+    }
+  }
 }

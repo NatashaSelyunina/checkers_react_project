@@ -11,30 +11,43 @@
 }
 
 .board {
-  width: calc(64px * 8);
-  height: calc(64px * 8);
+  width: calc(70.6px * 8);
+  height: calc(70.6px * 8);
   display: flex;
   flex-wrap: wrap;
+  border: 3px solid darkgreen;
 }
 
 .cell {
-  width: 64px;
-  height: 64px;
+  width: 70px;
+  height: 70px;
   display: flex;
   justify-content: center;
   align-items: center;
+  border: 1px solid rgb(32, 94, 14);
 }
 
 .cell img {
-  width: 48px;
-  height: 48px;
+  width: 60px;
+  height: 60px;
   position: relative;
 }
 
 .black {
-  background-color: rgb(181, 28, 28);
+  background-color: rgb(25, 132, 64);
 }
 
 .white {
-  background-color: burlywood;
+  background-color: rgb(237, 230, 220);
+}
+
+.selected {
+  background-color: rgb(16, 59, 176);
+}
+
+.free {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: rgb(223, 46, 33);
 }
