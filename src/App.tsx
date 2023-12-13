@@ -5,6 +5,7 @@ import { Board } from "./logic/Board";
 import { Player } from "./logic/Player";
 import { Colors } from "./logic/Colors";
 import EatenCheckers from "./components/EatenCheckers";
+import Restart from "./components/Restart";
 
 const App = () => {
   const [board, setBoard] = useState(new Board());
@@ -30,13 +31,15 @@ const App = () => {
 
   return (
     <div className="app">
-     <BoardComponent
-     board={board}
-     setBoard={setBoard}
-     currentPlayer={currentPlayer}
-     changePlayer={changePlayer}
-     />
-     <div>
+      <Restart
+      restart={restart}/>
+      <BoardComponent
+      board={board}
+      setBoard={setBoard}
+      currentPlayer={currentPlayer}
+      changePlayer={changePlayer}
+       />
+    <div>
       <EatenCheckers 
       title="Черные шашки" 
       figures={board.eatenBlackCheckers}/>

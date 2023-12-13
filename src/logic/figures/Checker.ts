@@ -24,19 +24,15 @@ export class Checker extends Figure {
       return true;
     }
 
-    if ((target.y === this.cell.y + direction) && 
-    ((target.x === this.cell.x + 1) || (target.x === this.cell.x - 1))  && 
-    this.cell.isEnemy(target) && ((target.x === this.cell.x + 2) || (target.x === this.cell.x - 2))) {
+    if (this.cell.isEmptyDiagonal(target))
       return true;
-    }
 
-    /*if (this.cell.isEmptyDiagonal(target))
-      return true;*/
-  
     return false;
   }
 
-  canKill() {
-    
-  }
+  /*canKill(target: Cell) {
+    if (this.cell.isEmptyDiagonal(target))
+      return true;
+    return false;
+  }*/
 }
