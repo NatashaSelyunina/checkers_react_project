@@ -4,6 +4,7 @@ import BoardComponent from "./components/BoardComponent";
 import { Board } from "./logic/Board";
 import { Player } from "./logic/Player";
 import { Colors } from "./logic/Colors";
+import EatenCheckers from "./components/EatenCheckers";
 
 const App = () => {
   const [board, setBoard] = useState(new Board());
@@ -35,6 +36,14 @@ const App = () => {
      currentPlayer={currentPlayer}
      changePlayer={changePlayer}
      />
+     <div>
+      <EatenCheckers 
+      title="Черные фигуры" 
+      figures={board.eatenBlackCheckers}/>
+      <EatenCheckers 
+      title="Белые фигуры" 
+      figures={board.eatenWhiteCheckers}/>
+     </div>
     </div>
   );
 };

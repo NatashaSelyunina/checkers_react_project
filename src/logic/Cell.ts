@@ -64,9 +64,16 @@ export class Cell {
     this.figure.cell = this;
   }
 
+  addEatenChecker(figure: Figure) {
+    figure.color === Colors.BLACK ? this.board.eatenBlackCheckers.push(figure) : this.board.eatenWhiteCheckers.push(figure);
+  }
+
   moveFigure(target: Cell) { // target - ячецка, на котору хотим переместить
     if (this.figure && this.figure?.canMove(target)) {
       this.figure.moveFigure(target);
+      if (target.figure) {
+        this.addEatenChecker(target.figure);
+      }
       target.setFigure(this.figure);
       this.figure = null;
     }

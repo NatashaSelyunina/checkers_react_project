@@ -50,3 +50,10 @@
   border-radius: 50%;
   background-color: rgb(223, 46, 33);
 }
+
+.eaten {
+  height: calc(50vh - 60px);
+  padding: 30px;
+  margin-left: 50px;
+  background-color: lightgray;
+}

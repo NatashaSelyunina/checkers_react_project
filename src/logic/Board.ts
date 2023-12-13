@@ -1,9 +1,12 @@
 import { Cell } from "./Cell";
 import { Colors } from "./Colors";
 import { Checker } from "./figures/Checker";
+import { Figure } from "./figures/Figure";
 
 export class Board {
   cells: Cell[][] = [];
+  eatenBlackCheckers: Figure[] = [];
+  eatenWhiteCheckers: Figure[] = [];
 
   public createCells() {
     for (let i = 0; i < 8; i++) {
@@ -23,6 +26,8 @@ export class Board {
   public getCopyBoard(): Board {
     const newBoard = new Board();
     newBoard.cells = this.cells;
+    newBoard.eatenWhiteCheckers = this.eatenWhiteCheckers;
+    newBoard.eatenBlackCheckers = this.eatenBlackCheckers;
     return newBoard;
   }
 
