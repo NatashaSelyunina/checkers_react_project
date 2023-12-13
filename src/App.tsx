@@ -38,10 +38,10 @@ const App = () => {
      />
      <div>
       <EatenCheckers 
-      title="Черные фигуры" 
+      title="Черные шашки" 
       figures={board.eatenBlackCheckers}/>
       <EatenCheckers 
-      title="Белые фигуры" 
+      title="Белые шашки" 
       figures={board.eatenWhiteCheckers}/>
      </div>
     </div>
