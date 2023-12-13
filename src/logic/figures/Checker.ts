@@ -15,9 +15,24 @@ export class Checker extends Figure {
   canMove(target: Cell): boolean {
     if(!super.canMove(target))
       return false;
-    if (this.cell.isEmptyDiagonal(target))
-      return true;
 
+    const direction = this.cell.figure?.color === Colors.BLACK ? 1 : -1;
+
+    if ((target.y === this.cell.y + direction) && 
+    ((target.x === this.cell.x + 1) || (target.x === this.cell.x - 1))  && 
+    this.cell.board.getCell(target.x, target.y).isEmpty()) {
+      return true;
+    }
+
+    if ((target.y === this.cell.y + direction) && 
+    ((target.x === this.cell.x + 1) || (target.x === this.cell.x - 1))  && 
+    this.cell.isEnemy(target) && ((target.x === this.cell.x + 2) || (target.x === this.cell.x - 2))) {
+      return true;
+    }
+
+    /*if (this.cell.isEmptyDiagonal(target))
+      return true;*/
+  
     return false;
   }
 }
