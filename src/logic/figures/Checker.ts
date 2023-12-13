@@ -35,4 +35,8 @@ export class Checker extends Figure {
   
     return false;
   }
+
+  canKill() {
+    
+  }
 }

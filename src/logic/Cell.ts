@@ -21,7 +21,7 @@ export class Cell {
     this.id = Math.random();
   }
 
-  isEmpty() {
+  isEmpty(): boolean {
     return this.figure === null;
   }
 
