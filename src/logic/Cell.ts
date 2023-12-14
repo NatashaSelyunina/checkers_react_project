@@ -3,9 +3,6 @@ import { Colors } from "./Colors";
 import { Figure } from "./figures/Figure";
 
 export class Cell {
-  if(arg0: boolean) {
-    throw new Error("Method not implemented.");
-  }
   readonly x: number;
   readonly y: number;
   readonly color: Colors;
@@ -34,15 +31,23 @@ export class Cell {
     return this.figure === null;
   }
 
-  isEnemy(target: Cell): boolean {
+  /*isEnemy(target: Cell): boolean {
     if ((Math.abs(target.x - this.x) === 2) && (Math.abs(target.y - this.y) === 2)) {
       if (((this.board.getCell(this.x + 1, this.y + 1)?.figure) && ((this.board.getCell(this.x + 1, this.y + 1)?.figure)?.color !== this.figure?.color)) || ((this.board.getCell(this.x + 1, this.y - 1)?.figure) && ((this.board.getCell(this.x + 1, this.y - 1)?.figure)?.color !== this.figure?.color)) || ((this.board.getCell(this.x - 1, this.y + 1)?.figure) && ((this.board.getCell(this.x - 1, this.y + 1)?.figure)?.color !== this.figure?.color)) || ((this.board.getCell(this.x - 1, this.y - 1)?.figure) && ((this.board.getCell(this.x - 1, this.y - 1)?.figure)?.color !== this.figure?.color))) {
         return true;
       }
     }
     return false;
+  }*/
+   
+  isEnemy(target: Cell): boolean {
+    if (target.figure) {
+      return this.figure?.color !== target.figure.color;
+    }
+    return false;
   }
 
+  
   canKill(target: Cell) {
     if (this.isEnemy(target))
       return true;
@@ -90,21 +95,20 @@ export class Cell {
     // target - ячецка, на которую хотим переместить
     if (this.figure && this.figure?.canMove(target)) {
       this.figure.moveFigure(target);
-      /*if (target.isEmpty() && currentFigure) {
-        this.addEatenChecker(currentFigure);
-        currentFigure = null;
-      }*/
+      if (target.figure) {
+        this.addEatenChecker(target.figure);
+      }
       target.setFigure(this.figure);
       this.figure = null;
     }
   }
 
-  killFigure(target: Cell) {
+  /*illFigure(target: Cell) {
     while (this.figure && this.isEnemy(target)) {
       this.canKill(target);
       target.setFigure(this.figure);
       this.figure = null;
-      if (this.board.getCell(this.x + 1, this.y + 1)?.figure && this.board.getCell(this.x + 1, this.y + 1).figure !== null) {
+      if (this.board.getCell(this.x + 1, this.y + 1)?.figure) {
         this.addEatenChecker(this.board.getCell(this.x + 1, this.y + 1).figure)
         this.board.getCell(this.x + 1, this.y + 1).figure = null;
       } else if (this.board.getCell(this.x + 1, this.y - 1)?.figure) {
@@ -118,5 +122,5 @@ export class Cell {
         this.board.getCell(this.x - 1, this.y - 1).figure = null;
       }
     }
-  }
+  }*/
 }
