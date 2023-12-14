@@ -23,6 +23,11 @@ const BoardComponent: FC<BoardProps> = ({board, setBoard, currentPlayer, changeP
       changePlayer();
       setSelectedCell(null);
       updateBoard();
+    } else if (selectedCell && selectedCell !== cell && selectedCell.canKill(cell)) {
+      selectedCell.canKill(cell);
+      changePlayer();
+      setSelectedCell(null);
+      updateBoard();
     } else {
       if (cell.figure?.color === currentPlayer?.color) {
         setSelectedCell(cell);

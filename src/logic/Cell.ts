@@ -35,21 +35,23 @@ export class Cell {
   }
 
   isEnemy(target: Cell): boolean {
-    if (target.figure) {
-      return this.figure?.color !== target.figure.color;
+    if ((Math.abs(target.x - this.x) === 2) && (Math.abs(target.y - this.y) === 2)) {
+      if (((this.board.getCell(this.x + 1, this.y + 1)?.figure) && ((this.board.getCell(this.x + 1, this.y + 1)?.figure)?.color !== this.figure?.color)) || ((this.board.getCell(this.x + 1, this.y - 1)?.figure) && ((this.board.getCell(this.x + 1, this.y - 1)?.figure)?.color !== this.figure?.color)) || ((this.board.getCell(this.x - 1, this.y + 1)?.figure) && ((this.board.getCell(this.x - 1, this.y + 1)?.figure)?.color !== this.figure?.color)) || ((this.board.getCell(this.x - 1, this.y - 1)?.figure) && ((this.board.getCell(this.x - 1, this.y - 1)?.figure)?.color !== this.figure?.color))) {
+        return true;
+      }
     }
     return false;
   }
 
-  isEmptyDiagonal(target: Cell): boolean {
-    /*const min = Math.min(this.y, target.y);
-    const max = Math.max(this.y, target.y);
-    for (let y = min + 1; y < max; y++) {
-      if (this.board.getCell(this.x, y).isEmpty()) {
+  canKill(target: Cell) {
+    if (this.isEnemy(target))
+      return true;
+    return false;
+  }
 
-      }
-    }
-    return true;*/
+
+  /*isEmptyDiagonal(target: Cell): boolean {
+  
     if (this.y === target.y || this.x === target.x) return false;
 
     const absX = Math.abs(target.x - this.x);
@@ -60,14 +62,15 @@ export class Cell {
     const diagonalXOneStep = this.x < target.x ? 1 : -1;
     const diagonalYTwoSteps = this.y < target.y ? 2 : -2;
     const diagonalXTwoSteps = this.x < target.x ? 2 : -2;
+    const currentFigure = this.board.getCell(this.x + diagonalXOneStep, this.y + diagonalYOneStep)?.figure;
 
-    if (this.board.getCell(this.x + diagonalXOneStep, this.y + diagonalYOneStep).figure?.color === this.figure?.color) {
+    if (currentFigure?.color === this.figure?.color) {
       return false;
-    } else if ((this.board.getCell(this.x + diagonalXOneStep, this.y + diagonalYOneStep).figure) && this.board.getCell(this.x + diagonalXTwoSteps, this.y + diagonalYTwoSteps).isEmpty()) {
+    } else if ((currentFigure) && this.board.getCell(this.x + diagonalXTwoSteps, this.y + diagonalYTwoSteps)?.isEmpty()) {
       return true;
     }
     return false;
-  }
+  }*/
 
   setFigure(figure: Figure) {
     this.figure = figure;
@@ -81,14 +84,39 @@ export class Cell {
   }
 
   moveFigure(target: Cell) {
-    // target - ячецка, на котору хотим переместить
+    /*const diagonalYOneStep = this.y < target.y ? 1 : -1;
+    const diagonalXOneStep = this.x < target.x ? 1 : -1;
+    let currentFigure = this.board.getCell(this.x + diagonalXOneStep, this.y + diagonalYOneStep).figure;*/
+    // target - ячецка, на которую хотим переместить
     if (this.figure && this.figure?.canMove(target)) {
       this.figure.moveFigure(target);
-      if (target.figure) {
-        this.addEatenChecker(target.figure);
-      }
+      /*if (target.isEmpty() && currentFigure) {
+        this.addEatenChecker(currentFigure);
+        currentFigure = null;
+      }*/
       target.setFigure(this.figure);
       this.figure = null;
+    }
+  }
+
+  killFigure(target: Cell) {
+    while (this.figure && this.isEnemy(target)) {
+      this.canKill(target);
+      target.setFigure(this.figure);
+      this.figure = null;
+      if (this.board.getCell(this.x + 1, this.y + 1)?.figure && this.board.getCell(this.x + 1, this.y + 1).figure !== null) {
+        this.addEatenChecker(this.board.getCell(this.x + 1, this.y + 1).figure)
+        this.board.getCell(this.x + 1, this.y + 1).figure = null;
+      } else if (this.board.getCell(this.x + 1, this.y - 1)?.figure) {
+        this.addEatenChecker(this.board.getCell(this.x + 1, this.y - 1).figure)
+        this.board.getCell(this.x + 1, this.y - 1).figure = null;
+      } else if (this.board.getCell(this.x - 1, this.y + 1)?.figure) {
+        this.addEatenChecker(this.board.getCell(this.x - 1, this.y + 1).figure)
+        this.board.getCell(this.x - 1, this.y + 1).figure = null;
+      } else if (this.board.getCell(this.x - 1, this.y - 1)?.figure) {
+        this.addEatenChecker(this.board.getCell(this.x - 1, this.y - 1).figure)
+        this.board.getCell(this.x - 1, this.y - 1).figure = null;
+      }
     }
   }
 }

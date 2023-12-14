@@ -23,6 +23,7 @@ const App = () => {
     newBoard.createCells();
     newBoard.addFigures();
     setBoard(newBoard);
+    setCurrentPlayer(whitePlayer);
   }
 
   function changePlayer() {

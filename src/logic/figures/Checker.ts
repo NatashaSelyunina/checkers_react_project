@@ -23,16 +23,7 @@ export class Checker extends Figure {
     this.cell.board.getCell(target.x, target.y).isEmpty()) {
       return true;
     }
-
-    if (this.cell.isEmptyDiagonal(target))
-      return true;
-
     return false;
   }
 
-  /*canKill(target: Cell) {
-    if (this.cell.isEmptyDiagonal(target))
-      return true;
-    return false;
-  }*/
 }
