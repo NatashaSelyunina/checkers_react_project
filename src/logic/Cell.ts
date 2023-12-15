@@ -95,12 +95,19 @@ export class Cell {
     // target - ячецка, на которую хотим переместить
     if (this.figure && this.figure?.canMove(target)) {
       this.figure.moveFigure(target);
+
+      const dy = this.y < target.y ? 1 : -1;
+      const dx = this.x < target.x ? 1 : -1;
+      let currentFigure = this.board.getCell(this.x + dx, this.y + dy).figure;
       
-      if (target.figure) {
-        this.addEatenChecker(target.figure);
+      if (currentFigure) {
+
+        this.addEatenChecker(currentFigure);
+
       }
       target.setFigure(this.figure);
       this.figure = null;
+      currentFigure = null;
     }
   }
 

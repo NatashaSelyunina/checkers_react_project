@@ -29,6 +29,7 @@ export class Checker extends Figure {
       if ((this.cell.board.getCell(this.cell.x + dx, this.cell.y + dy).figure) && (this.cell.isEnemy(target)) && (this.cell.board.getCell(this.cell.x + dx * 2, this.cell.y + dy * 2).isEmpty()) && ((this.cell.x + dx * 2) < 8) && ((this.cell.y + dy * 2) < 8) && ((this.cell.x + dx * 2) >= 0) && ((this.cell.y + dy * 2) >= 0) && this.cell.figure?.color !== this.cell.board.getCell(this.cell.x + dx, this.cell.y + dy).figure?.color) {
         return true;
       }
+      this.cell.board.getCell(this.cell.x + dx, this.cell.y + dy).figure = null;
     }
 
   

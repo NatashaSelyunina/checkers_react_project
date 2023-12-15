@@ -8,6 +8,8 @@ export class Board {
   eatenBlackCheckers: Figure[] = [];
   eatenWhiteCheckers: Figure[] = [];
   board: Figure | undefined;
+  y: number | undefined;
+  x: number | undefined;
 
   public createCells() {
     for (let i = 0; i < 8; i++) {

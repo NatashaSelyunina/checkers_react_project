@@ -18,5 +18,9 @@ h3 {
 }
 
 h4 {
-  color: white;
+  color: black;
+}
+
+.divCheckers {
+  background-color: white;
 }

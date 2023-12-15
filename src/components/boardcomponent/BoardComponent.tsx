@@ -30,6 +30,9 @@ const BoardComponent: FC<BoardProps> = ({
       selectedCell !== cell &&
       selectedCell.figure?.canMove(cell)
     ) {
+      const dy = selectedCell.y < cell.y ? 1 : -1;
+      const dx = selectedCell.x < cell.x ? 1 : -1;
+
       selectedCell.moveFigure(cell);
       changePlayer();
       setSelectedCell(null);
