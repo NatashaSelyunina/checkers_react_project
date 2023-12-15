@@ -1,0 +1,22 @@
+body {
+  background-image: url('../../img/game.jpeg');
+}
+
+.div {
+  display: flex;
+  justify-content: center;
+}
+
+.divH3 {
+  margin-top: 20px;
+  margin: auto
+}
+
+h3 {
+  color: white;
+  margin-left: 500px;
+}
+
+h4 {
+  color: white;
+}

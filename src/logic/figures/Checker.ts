@@ -19,15 +19,14 @@ export class Checker extends Figure {
     const direction = this.cell.figure?.color === Colors.BLACK ? 1 : -1;
 
     if ((target.y === this.cell.y + direction) && 
-    ((target.x === this.cell.x + 1) || (target.x === this.cell.x - 1))  && 
-    this.cell.board.getCell(target.x, target.y).isEmpty()) {
+    ((target.x === this.cell.x + 1) || (target.x === this.cell.x - 1)) && this.cell.board.getCell(target.x, target.y).isEmpty()) {
       return true;
     }
 
     if ((Math.abs(target.x - this.cell.x) === 2) && (Math.abs(target.y - this.cell.y) === 2)) {
       const dy = this.cell.y < target.y ? 1 : -1;
       const dx = this.cell.x < target.x ? 1 : -1;
-      if ((this.cell.board.getCell(this.cell.x + dx, this.cell.y + dy).figure) && (this.cell.board.getCell(this.cell.x + dx, this.cell.y + dy).figure?.color === this.cell.color) && (this.cell.board.getCell(this.cell.x + dx * 2, this.cell.y + dy * 2).isEmpty())) {
+      if ((this.cell.board.getCell(this.cell.x + dx, this.cell.y + dy).figure) && (this.cell.isEnemy(target)) && (this.cell.board.getCell(this.cell.x + dx * 2, this.cell.y + dy * 2).isEmpty()) && ((this.cell.x + dx * 2) < 8) && ((this.cell.y + dy * 2) < 8) && ((this.cell.x + dx * 2) >= 0) && ((this.cell.y + dy * 2) >= 0) && this.cell.figure?.color !== this.cell.board.getCell(this.cell.x + dx, this.cell.y + dy).figure?.color) {
         return true;
       }
     }

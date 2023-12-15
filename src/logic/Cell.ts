@@ -31,23 +31,23 @@ export class Cell {
     return this.figure === null;
   }
 
-  /*isEnemy(target: Cell): boolean {
+  isEnemy(target: Cell): boolean {
     if ((Math.abs(target.x - this.x) === 2) && (Math.abs(target.y - this.y) === 2)) {
-      if (((this.board.getCell(this.x + 1, this.y + 1)?.figure) && ((this.board.getCell(this.x + 1, this.y + 1)?.figure)?.color !== this.figure?.color)) || ((this.board.getCell(this.x + 1, this.y - 1)?.figure) && ((this.board.getCell(this.x + 1, this.y - 1)?.figure)?.color !== this.figure?.color)) || ((this.board.getCell(this.x - 1, this.y + 1)?.figure) && ((this.board.getCell(this.x - 1, this.y + 1)?.figure)?.color !== this.figure?.color)) || ((this.board.getCell(this.x - 1, this.y - 1)?.figure) && ((this.board.getCell(this.x - 1, this.y - 1)?.figure)?.color !== this.figure?.color))) {
+      if (((this.board.getCell(this.x + 1, this.y + 1)?.figure) && ((this.board.getCell(this.x + 1, this.y + 1)?.figure)?.color !== this.figure?.color)) || ((this.board.getCell(this.x + 1, this.y - 1)?.figure) && ((this.board.getCell(this.x + 1, this.y - 1)?.figure)?.color !== this.figure?.color)) || ((this.board.getCell(this.x - 1, this.y + 1)?.figure) && ((this.board.getCell(this.x - 1, this.y + 1)?.figure)?.color !== this.figure?.color)) || ((this.board.getCell(this.x - 1, this.y - 1)?.figure) && ((this.board.getCell(this.x - 1, this.y - 1)?.figure)?.color !== this.figure?.color)) && target.x >= 0 && target.x < 8 && target.y >=0 && target.y < 8 && this.x < 8 && this.x >= 0) {
         return true;
       }
     }
     return false;
-  }*/
+  }
    
-  isEnemy(target: Cell): boolean {
+  /*isEnemy(target: Cell): boolean {
     if (target.figure) {
       return this.figure?.color !== target.figure.color;
     }
     return false;
-  }
+  }*/
 
-  
+
   canKill(target: Cell) {
     if (this.isEnemy(target))
       return true;
@@ -95,6 +95,7 @@ export class Cell {
     // target - ячецка, на которую хотим переместить
     if (this.figure && this.figure?.canMove(target)) {
       this.figure.moveFigure(target);
+      
       if (target.figure) {
         this.addEatenChecker(target.figure);
       }

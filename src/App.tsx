@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import BoardComponent from "./components/BoardComponent";
+import BoardComponent from "./components/boardcomponent/BoardComponent";
 import { Board } from "./logic/Board";
 import { Player } from "./logic/Player";
 import { Colors } from "./logic/Colors";
-import EatenCheckers from "./components/EatenCheckers";
-import Restart from "./components/Restart";
+import { Route, Routes } from "react-router-dom";
+import Layout from "./components/layouts/Layout";
+import Home from "./components/home/Home";
 
 const App = () => {
   const [board, setBoard] = useState(new Board());
@@ -16,7 +17,7 @@ const App = () => {
   useEffect(() => {
     restart();
     setCurrentPlayer(whitePlayer);
-  }, [])
+  }, []);
 
   function restart() {
     const newBoard = new Board();
@@ -27,28 +28,28 @@ const App = () => {
   }
 
   function changePlayer() {
-    setCurrentPlayer(currentPlayer?.color === Colors.WHITE ? blackPlayer : whitePlayer);
+    setCurrentPlayer(
+      currentPlayer?.color === Colors.WHITE ? blackPlayer : whitePlayer
+    );
   }
 
   return (
-    <div className="app">
-      <Restart
-      restart={restart}/>
-      <BoardComponent
-      board={board}
-      setBoard={setBoard}
-      currentPlayer={currentPlayer}
-      changePlayer={changePlayer}
-       />
-    <div>
-      <EatenCheckers 
-      title="Черные шашки" 
-      figures={board.eatenBlackCheckers}/>
-      <EatenCheckers 
-      title="Белые шашки" 
-      figures={board.eatenWhiteCheckers}/>
-     </div>
-    </div>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route
+          path="boardcomponent"
+          element={
+            <BoardComponent
+              board={board}
+              setBoard={setBoard}
+              currentPlayer={currentPlayer}
+              changePlayer={changePlayer}
+            />
+          }
+        ></Route>
+      </Route>
+    </Routes>
   );
 };
 

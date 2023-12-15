@@ -13,7 +13,7 @@ interface EatenCheckersProps {
 const EatenCheckers: FC<EatenCheckersProps> = ({title, figures}) => {
   return (
     <div className="eaten">
-      <h3>{title}</h3>
+      <h4>{title}</h4>
       {figures.map(figure => 
         <div key={figure.id}>
           {figure.name} {figure.logo && <img width={20} height={20} src={figure.logo}/>}

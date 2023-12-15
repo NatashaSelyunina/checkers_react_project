@@ -7,6 +7,7 @@ export class Board {
   cells: Cell[][] = [];
   eatenBlackCheckers: Figure[] = [];
   eatenWhiteCheckers: Figure[] = [];
+  board: Figure | undefined;
 
   public createCells() {
     for (let i = 0; i < 8; i++) {
